@@ -17,7 +17,7 @@ button:not(:disabled):hover,a.btn:hover{filter:brightness(1.17);box-shadow:0 0 0
 button:not(:disabled):active,a.btn:active{filter:brightness(.9);transform:translateY(1px) scale(.985)}
 nav button.active:hover,#vehicleTabs button:not(.secondary):hover{background:#27557e;border-color:#68b5fa;box-shadow:0 0 0 1px #4289c3}
 button:focus-visible,a.btn:focus-visible{outline:2px solid #8dccff;outline-offset:3px}
-button.is-loading{pointer-events:none;cursor:progress;opacity:.85;padding-right:37px!important}
+button.is-loading{pointer-events:none;cursor:progress;padding-right:37px!important}
 button.is-loading::after{content:"";position:absolute;right:12px;top:50%;width:14px;height:14px;margin-top:-8px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:tns-spin .65s linear infinite}
 @keyframes tns-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){button,a.btn{transition:none!important;animation:none!important;transform:none!important}button.is-loading::after{animation:none;border-top-color:#fff}}
