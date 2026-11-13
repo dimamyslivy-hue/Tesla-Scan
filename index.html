@@ -155,12 +155,22 @@ button:focus-visible,a.btn:focus-visible{outline-color:#ff8799}
 @media(max-width:540px){.performance-hero{min-height:445px;border-radius:19px}.performance-topline{padding:17px 17px}.performance-eyebrow,.performance-version{font-size:8px;letter-spacing:.11em}.performance-heading{padding:26px 19px 0}.performance-heading h2{font-size:40px}.performance-heading p{max-width:235px;font-size:11px;line-height:1.6}.performance-car{width:115%;top:175px;right:-30%;opacity:.82}.performance-hero-bottom{padding:17px;gap:8px}.performance-hero-bottom strong{font-size:10px}.performance-hero-bottom span{font-size:9px}.performance-start{font-size:11px;padding:11px 12px;gap:8px}.performance-section-title{margin-top:24px}.performance-links{gap:9px}.performance-links button{padding:12px 10px;gap:9px;min-height:90px}.performance-link-icon{flex-basis:34px;width:34px;height:34px;font-size:20px}.performance-links strong{font-size:11px}.performance-links small{font-size:10px}.performance-link-arrow{display:none}}
 
 .performance-car img{display:block;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 12px 25px rgba(220,25,52,.2))}
+
+/* User-selected local hero photo (cosmetic only). */
+.hero-photo-controls{position:absolute;right:22px;top:55px;z-index:5;display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;max-width:62%}
+.hero-photo-btn{appearance:none;border:1px solid #99485b;border-radius:10px;padding:8px 11px;background:#21121be8;color:#ffe3e9;font:700 11px inherit;cursor:pointer;backdrop-filter:blur(10px)}
+.hero-photo-btn:hover{border-color:#ff6a83;background:#492130}
+.hero-photo-btn[hidden],#heroPhotoInput[hidden]{display:none!important}
+.performance-car.user-photo{right:0;top:110px;width:100%;max-width:none;height:calc(100% - 165px);opacity:1;filter:none;overflow:hidden}
+.performance-car.user-photo img{width:100%;height:100%;object-fit:contain;object-position:center center;filter:none}
+@media(max-width:540px){.hero-photo-controls{top:45px;right:13px;max-width:73%;gap:5px}.hero-photo-btn{font-size:10px;padding:7px 8px}.performance-car.user-photo{top:148px;height:calc(100% - 210px)}}
 </style></head><body><div class="app"><header><div><div class="row" style="justify-content:flex-start"><span class="logo">⚡</span><h1>Tesla Network Scanner</h1></div><div class="muted">Діагностика CAN · Профіль прототипу</div></div><span class="pill warn" id="connectionPill">● DEMO</span></header><div class="vehicle-topbar"><div id="vehicleTabs" class="vehicle-tabs"><button class="btn secondary" data-model="S">Tesla S</button><button class="btn secondary" data-model="X">Tesla X</button><button class="btn secondary" data-model="3">Tesla 3</button><button class="btn secondary" data-model="Y">Tesla Y</button></div></div><div class="layout"><nav id="nav"><button class="active" data-page="home">⌂ Головна</button><button data-page="diagnosis">◈ Діагностика</button><button data-page="schematics">▧ Електросхеми</button></nav><main>
 <section id="home" class="landing performance-home">
 <div class="performance-hero">
 <div class="performance-topline"><span class="performance-eyebrow"><span class="performance-dot"></span> TESLA DIAGNOSTIC PLATFORM</span><span class="performance-version">PERFORMANCE / RED</span></div>
 <div class="performance-heading"><span class="performance-kicker">NETWORK SCANNER</span><h2>Контроль кожної<br><em>системи.</em></h2><p>Діагностика CAN · Сканування ECU · Моніторинг</p></div>
-<div class="performance-car"><img src="./tesla-model-s-performance.svg?v=1" alt="Червона Tesla Model S Performance" width="900" height="560" loading="eager" decoding="async"></div>
+<div class="performance-car" id="performanceCar"><img id="performanceCarImage" src="./tesla-model-s-performance.svg?v=1" alt="Tesla Model S — заставка" width="900" height="560" loading="eager" decoding="async"></div>
+<div class="hero-photo-controls"><button type="button" id="changeHeroPhoto" class="hero-photo-btn">◉ Змінити заставку</button><button type="button" id="resetHeroPhoto" class="hero-photo-btn" hidden>↺ Стандартна</button><input type="file" id="heroPhotoInput" accept="image/*" aria-label="Оберіть фотографію заставки" hidden></div>
 <div class="performance-hero-bottom"><div><strong>TESLA S / X / 3 / Y</strong><span>Платформа діагностики</span></div><button class="btn performance-start" onclick="showPage('dashboard')">Відкрити діагностику <span aria-hidden="true">↗</span></button></div>
 </div>
 <div class="performance-section-title"><div><span>ІНСТРУМЕНТИ</span><h3>Панель керування</h3></div><span class="performance-section-note">Оберіть розділ</span></div>
@@ -278,4 +288,52 @@ renderVinHistory();
 /* Only functional actions show a spinner; navigation/selection never pretends to load. */
 function buttonBusy(button,action){if(!button||button.disabled||button.classList.contains('is-loading'))return;button.classList.add('is-loading');button.setAttribute('aria-busy','true');try{const result=action();if(result&&typeof result.then==='function'){Promise.resolve(result).finally(()=>{button.classList.remove('is-loading');button.removeAttribute('aria-busy')})}else{setTimeout(()=>{button.classList.remove('is-loading');button.removeAttribute('aria-busy')},380)}}catch(error){button.classList.remove('is-loading');button.removeAttribute('aria-busy');throw error}}
 ['decodeVin','matchSchematics','buildPlan','exportBtn','clearBtn','demoBtn','connectBtn','disconnectBtn'].forEach(id=>{const b=$(id);if(!b)return;const previous=b.onclick;if(typeof previous!=='function')return;b.onclick=function(e){return buttonBusy(b,()=>previous.call(b,e))}});
+
+/* Local custom hero photo: browser IndexedDB; never uploads to a server. */
+(function(){
+ const photo=document.getElementById('performanceCarImage');
+ const frame=document.getElementById('performanceCar');
+ const pick=document.getElementById('changeHeroPhoto');
+ const reset=document.getElementById('resetHeroPhoto');
+ const input=document.getElementById('heroPhotoInput');
+ if(!photo||!frame||!pick||!reset||!input)return;
+ const original=photo.getAttribute('src');
+ let activeUrl=null,db=null;
+ const openDB=()=>new Promise((resolve,reject)=>{
+  if(!window.indexedDB){reject(new Error('IndexedDB unavailable'));return}
+  const request=indexedDB.open('teslaScannerAppearance',1);
+  request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains('images'))request.result.createObjectStore('images')};
+  request.onsuccess=()=>resolve(request.result);
+  request.onerror=()=>reject(request.error);
+ });
+ const transaction=(mode,fn)=>new Promise((resolve,reject)=>{
+  const tx=db.transaction('images',mode),store=tx.objectStore('images');fn(store);
+  tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+ });
+ const show=(blob)=>{
+  if(activeUrl){URL.revokeObjectURL(activeUrl);activeUrl=null}
+  if(blob){activeUrl=URL.createObjectURL(blob);photo.src=activeUrl;frame.classList.add('user-photo');reset.hidden=false}
+  else{photo.src=original;frame.classList.remove('user-photo');reset.hidden=true}
+ };
+ openDB().then(async d=>{
+  db=d;
+  const request=db.transaction('images','readonly').objectStore('images').get('homeHero');
+  request.onsuccess=()=>{if(request.result instanceof Blob)show(request.result)};
+ }).catch(()=>{});
+ pick.addEventListener('click',()=>input.click());
+ input.addEventListener('change',async()=>{
+  const file=input.files&&input.files[0];input.value='';
+  if(!file)return;
+  if(!file.type.startsWith('image/')){alert('Оберіть зображення.');return}
+  if(file.size>20*1024*1024){alert('Зображення завелике. Оберіть файл до 20 МБ.');return}
+  show(file);
+  try{if(!db)db=await openDB();await transaction('readwrite',store=>store.put(file,'homeHero'))}
+  catch(e){alert('Заставку змінено, але браузер не зміг зберегти її для наступного запуску.')}
+ });
+ reset.addEventListener('click',async()=>{
+  show(null);
+  try{if(!db)db=await openDB();await transaction('readwrite',store=>store.delete('homeHero'))}
+  catch(e){alert('Не вдалося видалити збережену заставку.')}
+ });
+})();
 </script></body></html>
