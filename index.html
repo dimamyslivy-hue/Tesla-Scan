@@ -332,8 +332,8 @@ function chooseSop(sop){if(!requireBuildMonth())return;selectedSop=sop;matchedSo
  if(url){
   $('sop2Integrated').classList.add('hidden');
   $('localPdfStatus').textContent='Виберіть 2013_ModelS_LHD_Release.pdf з телефона для перегляду всіх сторінок. Файл не надсилається на сервер.';
-  $('docsFrame').style.display='block';
-  $('docsFrame').src=url;
+  $('docsFrame').style.display='none';
+  $('docsFrame').src='about:blank';
   $('docsExternal').href=url;
   $('docsExternal').style.display='inline-block';
   $('docsExternal').textContent='Відкрити оригінал Tesla ↗';
