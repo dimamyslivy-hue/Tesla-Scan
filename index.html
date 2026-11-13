@@ -323,13 +323,15 @@ function openLocalSopSheet(page,sheet,name){
  $('docsFrame').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function chooseSop(sop){if(!requireBuildMonth())return;selectedSop=sop;matchedSop=sop;if(sop[1]==='2'&&sop[0]==='LHD'){
- $('schemePicker').classList.add('hidden');
+ $('schemePicker').classList.remove('hidden');
  $('schemeButtons').replaceChildren();
- $('localPdfPanel').classList.add('hidden');
+ $('schemePickerNote').textContent='SOP 2 · На iPhone можна вибрати PDF із телефона для перегляду всіх сторінок усередині сканера.';
+ $('localPdfPanel').classList.remove('hidden');
  $('embeddedDocs').classList.remove('hidden');
  const url=sopDocUrl(sop,'wiring');
  if(url){
   $('sop2Integrated').classList.add('hidden');
+  $('localPdfStatus').textContent='Виберіть 2013_ModelS_LHD_Release.pdf з телефона для перегляду всіх сторінок. Файл не надсилається на сервер.';
   $('docsFrame').style.display='block';
   $('docsFrame').src=url;
   $('docsExternal').href=url;
