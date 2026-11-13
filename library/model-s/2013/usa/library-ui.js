@@ -54,7 +54,7 @@
   if(!res.ok)throw Error('HTTP '+res.status);
   const data=await res.json();
   if(data.market!=='USA'||data.year!==2013||data.model!=='Model S')throw Error('Невідповідний профіль');
-  documents=(Array.isArray(data.documents)?data.documents:[]).filter(d=>d&&d.title&&typeof d.path==='string'&&/^library\\/model-s\\/2013\\/usa\\/files\\/[\\w.\\/-]+\\.pdf$/i.test(d.path));
+  documents=(Array.isArray(data.documents)?data.documents:[]).filter(d=>d&&d.title&&typeof d.path==='string'&&d.path.startsWith('library/model-s/2013/usa/files/')&&d.path.toLowerCase().endsWith('.pdf')&&!d.path.includes('..'));
   status.textContent=documents.length?'Перевірені документи Model S 2013 USA:':'Каталог USA створено. Перевірені PDF ще не додані; локальний PDF можна відкрити нижче. Файл SOP2+EU не позначається як USA.';
   documents.forEach(d=>{
    const a=document.createElement('a');a.className='btn secondary';a.style.cssText='display:block;margin:8px 0;text-decoration:none';
