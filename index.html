@@ -329,12 +329,13 @@ function chooseSop(sop){if(!requireBuildMonth())return;selectedSop=sop;matchedSo
  $('embeddedDocs').classList.remove('hidden');
  const url=sopDocUrl(sop,'wiring');
  if(url){
-  $('docsFrame').style.display='none';
+  $('sop2Integrated').classList.add('hidden');
+  $('docsFrame').style.display='block';
+  $('docsFrame').src=url;
   $('docsExternal').href=url;
-  $('docsExternal').style.display='none';
-  $('sop2Integrated').classList.remove('hidden');
-  $('embeddedDocsNotice').textContent='SOP 2 · Model S 2013 LHD · повний пакет у переглядачі сканера. Для USA перевіряйте RENA.';
-  loadIntegratedSop2(url);
+  $('docsExternal').style.display='inline-block';
+  $('docsExternal').textContent='Відкрити оригінал Tesla ↗';
+  $('embeddedDocsNotice').textContent='SOP 2 · Model S 2013 LHD. Документ відкритий посиланням із сайту Tesla у вкладці «Схеми», так само як каталог роз’ємів. На iPhone вбудований перегляд PDF може показувати лише першу сторінку.';
  }else $('embeddedDocsNotice').textContent='Не знайдено офіційний PDF для цього SOP.';
  $('embeddedDocs').scrollIntoView({behavior:'smooth',block:'start'});
  return}$('schemePicker').classList.remove('hidden');$('schemePickerNote').textContent='SOP '+sop[1]+' · '+sop[0]+' · '+sop[2]+' — '+sop[3]+'. Український тематичний каталог із 43 позицій за SOP 6. Нумерація та відповідність окремих пунктів оригіналу ще потребують перевірки. Кнопки шукають англійські назви у PDF.';const grid=$('schemeButtons');grid.replaceChildren();ukrainianSchemeLabels.forEach((name,i)=>{const button=document.createElement('button');button.className='btn secondary';button.textContent=String(i+1).padStart(2,'0')+' · '+name;button.onclick=()=>{const url=sopDocUrl(sop,'wiring');if(!url){$('embeddedDocsNotice').textContent='PDF цього SOP не підключений';return}const pageUrl=url+'#search='+encodeURIComponent(englishSchemeSearch[i]||name);$('docsFrame').src=pageUrl;$('docsExternal').href=pageUrl;$('embeddedDocsNotice').textContent='Розділ '+(i+1)+': '+name+'. Пошук за назвою в оригінальному PDF. Якщо переглядач не підтримує пошук за посиланням, використайте зміст PDF; номер схеми не дорівнює номеру сторінки.'};grid.appendChild(button)});$('schemePicker').scrollIntoView({behavior:'smooth',block:'start'})}
