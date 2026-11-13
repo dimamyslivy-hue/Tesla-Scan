@@ -1,1 +1,18 @@
-{"name":"Tesla Network Scanner","short_name":"TeslaScanner","start_url":"./index.html","display":"standalone","background_color":"#080d17","theme_color":"#0b1220","lang":"uk","description":"CAN diagnostic research dashboard prototype"}
+{
+  "name": "Tesla Network Scanner",
+  "short_name": "TeslaScanner",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080d17",
+  "theme_color": "#10070d",
+  "lang": "uk",
+  "description": "CAN diagnostic research dashboard prototype",
+  "icons": [
+    {
+      "src": "./tesla-scanner-home-v2.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
