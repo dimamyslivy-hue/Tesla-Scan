@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-label="Tesla Model S Performance — червоний спортивний седан">
+<defs>
+<linearGradient id="paint" x1=".12" y1="0" x2=".9" y2="1"><stop stop-color="#ff9a9d"/><stop offset=".11" stop-color="#b51e32"/><stop offset=".32" stop-color="#5b0916"/><stop offset=".5" stop-color="#ec3345"/><stop offset=".68" stop-color="#6e0917"/><stop offset=".86" stop-color="#210911"/><stop offset="1" stop-color="#b41a2b"/></linearGradient>
+<linearGradient id="hood" x1=".15" y1=".2" x2=".9" y2=".9"><stop stop-color="#a52232"/><stop offset=".35" stop-color="#4c0b18"/><stop offset=".66" stop-color="#e53b4b"/><stop offset="1" stop-color="#3c0811"/></linearGradient>
+<linearGradient id="side" x1="0" y1="0" x2="1" y2=".85"><stop stop-color="#9b1c2a"/><stop offset=".3" stop-color="#4c0c18"/><stop offset=".58" stop-color="#bb2737"/><stop offset=".77" stop-color="#370b16"/><stop offset="1" stop-color="#100d13"/></linearGradient>
+<linearGradient id="glass" x1=".1" y1="0" x2=".8" y2="1"><stop stop-color="#57616a"/><stop offset=".16" stop-color="#151e2a"/><stop offset=".55" stop-color="#070b12"/><stop offset=".84" stop-color="#252a35"/><stop offset="1" stop-color="#06090d"/></linearGradient>
+<linearGradient id="headlight" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b1efff"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#7edcff"/></linearGradient>
+<linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ff263f" stop-opacity=".3"/><stop offset="1" stop-color="#ff263f" stop-opacity="0"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#e21c3b" stop-opacity=".42"/><stop offset="1" stop-color="#e21c3b" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="14"/></filter><filter id="small"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<ellipse cx="485" cy="442" rx="415" ry="85" fill="url(#glow)"/><ellipse cx="472" cy="436" rx="384" ry="35" fill="#020308" opacity=".9" filter="url(#soft)"/>
+<path d="M16 450H888" stroke="#f62845" stroke-width="3" opacity=".85"/><path d="M36 459H864" stroke="#f62845" stroke-width="13" opacity=".16" filter="url(#soft)"/>
+<!-- rear passenger side -->
+<path d="M451 225Q544 164 653 179Q728 189 770 255L851 290Q877 304 880 340L869 386Q843 401 802 401L291 406L160 385Q140 358 168 321L268 270Z" fill="url(#side)" stroke="#9f3544" stroke-width="3"/>
+<!-- cabin -->
+<path d="M426 229Q535 163 652 187Q708 199 753 263L530 276L348 272Z" fill="url(#glass)" stroke="#7d4d58" stroke-width="5"/>
+<path d="M562 193L572 271M430 232L527 269" stroke="#9f6471" stroke-width="7" opacity=".75"/><path d="M585 201Q651 204 694 230" stroke="#a5b3bd" opacity=".33" stroke-width="5" fill="none"/>
+<!-- doors -->
+<path d="M575 282L555 384M749 269L771 387" fill="none" stroke="#230811" stroke-width="4"/><path d="M580 287Q651 286 731 281" stroke="#fa6370" opacity=".6" stroke-width="3" fill="none"/>
+<path d="M598 297h25" stroke="#d9a1a6" stroke-width="5" stroke-linecap="round"/><path d="M760 288h22" stroke="#c8a4aa" stroke-width="4" stroke-linecap="round"/>
+<!-- mirrors -->
+<path d="M509 259Q532 251 548 264L546 280L516 280Z" fill="#e04453" stroke="#4b1522" stroke-width="3"/>
+<!-- hood and front fascia -->
+<path d="M164 320Q222 289 335 269L507 269Q556 284 570 324L529 367L346 405L130 387Q110 368 129 343Z" fill="url(#hood)" stroke="#b72b3d" stroke-width="3"/>
+<path d="M145 350Q315 321 553 328L524 368Q331 403 144 386Z" fill="#220b15" opacity=".94"/>
+<path d="M150 349Q340 327 549 331" fill="none" stroke="#e85c6b" stroke-width="4" opacity=".85"/>
+<path d="M173 369Q341 377 520 351L506 377Q333 414 165 393Z" fill="#08090e" stroke="#7b2532" stroke-width="3"/>
+<path d="M181 379Q347 388 514 362" fill="none" stroke="#6e2a37" stroke-width="3"/>
+<path d="M225 399Q337 410 478 389" fill="none" stroke="#ed3046" stroke-width="5"/>
+<!-- front light clusters -->
+<path d="M169 321Q228 293 295 297L279 320Q230 333 173 335Z" fill="#111822" stroke="#e64c5d" stroke-width="3"/>
+<path d="M179 320Q226 299 282 304L272 315Q226 327 182 327Z" fill="url(#headlight)" filter="url(#small)"/>
+<path d="M181 319Q226 301 280 305" fill="none" stroke="#e4fbff" stroke-width="5" stroke-linecap="round"/>
+<path d="M483 291Q516 290 543 304L549 323L490 314Z" fill="#151923" stroke="#e75c6b" stroke-width="3"/>
+<path d="M490 300Q519 297 540 310" stroke="#e1faff" stroke-width="5" fill="none" filter="url(#small)"/>
+<!-- front grille logo -->
+<path d="M362 345Q391 342 415 341" stroke="#ded4d5" stroke-width="2" fill="none"/><path d="M384 343v13l-5-8h10Z" fill="#f5e6e8"/>
+<!-- front wheel -->
+<g transform="translate(310 396)"><circle r="71" fill="#05060a" stroke="#3c2029" stroke-width="10"/><circle r="58" fill="#14161b" stroke="#62646a" stroke-width="4"/><circle r="49" fill="#06080c" stroke="#3b3e46" stroke-width="3"/><path d="M-7-47L6-47L12-13L44-25L49-10L18 5L34 37L21 44L2 17L-24 43L-39 32L-14 4L-45-9L-40-26L-10-14Z" fill="#32343b" stroke="#787982" stroke-width="2"/><circle r="18" fill="#17191e" stroke="#98969d" stroke-width="3"/><circle r="8" fill="#c12b3d"/></g>
+<!-- rear wheel -->
+<g transform="translate(752 384) scale(.81)"><circle r="71" fill="#05060a" stroke="#3c2029" stroke-width="10"/><circle r="58" fill="#14161b" stroke="#62646a" stroke-width="4"/><circle r="49" fill="#06080c" stroke="#3b3e46" stroke-width="3"/><path d="M-7-47L6-47L12-13L44-25L49-10L18 5L34 37L21 44L2 17L-24 43L-39 32L-14 4L-45-9L-40-26L-10-14Z" fill="#32343b" stroke="#787982" stroke-width="2"/><circle r="18" fill="#17191e" stroke="#98969d" stroke-width="3"/><circle r="8" fill="#c12b3d"/></g>
+<!-- finishing contours -->
+<path d="M337 275Q412 258 506 270M559 285Q650 279 759 269" stroke="#ff7d86" stroke-width="3" opacity=".67" fill="none"/>
+<path d="M396 397Q524 398 672 392" stroke="#fc445c" stroke-width="3" opacity=".7" fill="none"/>
+<path d="M130 431Q450 460 860 434" stroke="#ff2645" stroke-width="2" opacity=".3" fill="none"/>
+<path d="M0 506Q400 475 900 510" stroke="url(#ground)" stroke-width="24" fill="none"/>
+</svg>
