@@ -14,7 +14,9 @@
  <button type="button" class="btn secondary" id="usaLibraryConnectors">Роз’єми</button>
  </div><p class="hint" id="usaLibrarySearchStatus" aria-live="polite"></p>
  <div id="usaLibraryMatches" class="list"></div><div id="usaLibraryDocs" class="list"></div>`;
- panel.parentElement.insertBefore(section,panel);
+ const pickerPanel=document.getElementById('schemePicker');
+ if(pickerPanel)pickerPanel.insertBefore(section,pickerPanel.firstChild);
+ else panel.parentElement.parentElement.insertBefore(section,panel.parentElement);
  const status=section.querySelector('#usaLibraryStatus');
  const search=section.querySelector('#usaLibrarySearch');
  const matches=section.querySelector('#usaLibraryMatches');
