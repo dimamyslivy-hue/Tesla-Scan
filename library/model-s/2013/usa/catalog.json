@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "market": "USA",
+  "model": "Model S",
+  "year": 2013,
+  "documentationStatus": "awaiting-licensed-files",
+  "documents": [],
+  "modules": [],
+  "notes": "Only verified USA 2013 documentation; do not infer connector pinouts or CAN identifiers."
+}
